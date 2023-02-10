@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RetrofitTest</string>
+    <string name="city_name">City Name</string>
+    <string name="send_request">Send Request</string>
+    <string name="loading">Loading…</string>
+    <string name="four_dp">4dp</string>
+</resources>

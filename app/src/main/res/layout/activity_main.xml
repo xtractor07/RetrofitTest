@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="4dp"
+    tools:context=".view.MainActivity">
+
+    <TextView
+        android:id="@+id/cityTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:padding="4dp"
+        android:text="City : "
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/cityEt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/cityEt"
+        android:layout_width="238dp"
+        android:layout_height="52dp"
+        android:hint="Enter City Name"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/cityTv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/fetchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/cityEt"
+        app:layout_constraintBaseline_toBaselineOf="@+id/cityEt"
+        android:layout_marginLeft="4dp"
+        android:text="Fetch"/>
+
+    <TextView
+        android:id="@+id/weatherTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Here Comes the weather"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/cityEt"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
