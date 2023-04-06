@@ -1,9 +1,12 @@
 package com.example.retrofittest.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.retrofittest.model.CurrentWeatherResponse
+import com.example.retrofittest.model.InitUploadRequest
+import com.example.retrofittest.model.InitUploadResponse
 import com.example.retrofittest.networking.ApiConfig
 import retrofit2.Call
 import retrofit2.Callback
@@ -13,6 +16,7 @@ import retrofit2.Response
 class MainViewModel : ViewModel() {
 
     private var _weatherData = MutableLiveData<CurrentWeatherResponse>()
+    private var _uploadResponse = MutableLiveData<InitUploadResponse>()
     val weatherData: LiveData<CurrentWeatherResponse> get()= _weatherData
 
     private var _isLoading = MutableLiveData<Boolean>()
@@ -24,29 +28,27 @@ class MainViewModel : ViewModel() {
     var errorMessage: String = ""
     private set
 
-    fun getWeatherData(city: String) {
+    fun fetchData(reqBody: InitUploadRequest) {
         _isLoading.value = true
         _isError.value = false
 
-        val client = ApiConfig.getApiService().getCurrentWeather(city = city)
+        val client = ApiConfig.getApiService().getData(reqBody)
 
         //send api request using retrofit
-        client.enqueue(object : Callback<CurrentWeatherResponse> {
+        client.enqueue(object : Callback<InitUploadResponse> {
             override fun onResponse(
-                call: Call<CurrentWeatherResponse>,
-                response: Response<CurrentWeatherResponse>
+                call: Call<InitUploadResponse>,
+                response: Response<InitUploadResponse>
             ) {
                 val responseBody = response.body()
                 if (!response.isSuccessful || responseBody == null) {
                     onError("Data Processing Error")
                     return
                 }
-
-                _isLoading.value = false
-                _weatherData.postValue(responseBody)
+                Log.d("ResponseBody", responseBody.status)
             }
 
-            override fun onFailure(call: Call<CurrentWeatherResponse>, t: Throwable) {
+            override fun onFailure(call: Call<InitUploadResponse>, t: Throwable) {
                 TODO("Not yet implemented")
             }
         })

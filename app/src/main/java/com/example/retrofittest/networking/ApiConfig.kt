@@ -21,7 +21,7 @@ class ApiConfig {
 
             //Retrofit
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://api.weatherapi.com/v1/")
+                .baseUrl("https://preprodapp.tekioncloud.com/api/media-v3/u/initiate-upload/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
